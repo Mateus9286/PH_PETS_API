@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const controllers_1 = require("../controllers");
+const isAdmin_middleware_1 = require("../middlewares/isAdmin.middleware");
+const ensureTokenIsValid_middleware_1 = require("../middlewares/ensureTokenIsValid.middleware");
+const ensureProductsExists_middleware_1 = require("../middlewares/ensureProductsExists.middleware");
+const ensureDataIsValid_middleware_1 = require("../middlewares/ensureDataIsValid.middleware");
+const users_schemas_1 = require("../schemas/users.schemas");
+const productsRoutes = (0, express_1.Router)();
+productsRoutes.post("/products", ensureTokenIsValid_middleware_1.ensureTokenIsValidMiddleware, isAdmin_middleware_1.isAdminMiddleware, (0, ensureDataIsValid_middleware_1.ensureDataIsValidMiddleware)(users_schemas_1.productSchema), controllers_1.createProductController);
+productsRoutes.get("/products", controllers_1.getProductController);
+productsRoutes.patch("/products/:id", ensureTokenIsValid_middleware_1.ensureTokenIsValidMiddleware, isAdmin_middleware_1.isAdminMiddleware, ensureProductsExists_middleware_1.ensureProductExistsMiddleware, controllers_1.pathProductController);
+productsRoutes.delete("/products/:id", ensureTokenIsValid_middleware_1.ensureTokenIsValidMiddleware, isAdmin_middleware_1.isAdminMiddleware, ensureProductsExists_middleware_1.ensureProductExistsMiddleware, controllers_1.deleteProductController);
+exports.default = productsRoutes;
