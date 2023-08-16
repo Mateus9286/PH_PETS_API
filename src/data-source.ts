@@ -13,14 +13,14 @@ const dataSourceConfig = (): DataSourceOptions => {
     throw new Error("Missing env var: 'DATABASE_URL'");
   }
 
-  const nodeEnv: string | undefined = process.env.NODE_ENV;
+  const nodeEnv: string | undefined = process.env.NODE_ENV!;
 
-  if (nodeEnv === "test") {
+  if (nodeEnv === "production") {
     return {
-      type: "sqlite",
-      database: ":memory:",
-      synchronize: true,
+      type: "postgres",
+      url: dbUrl,
       entities: [entitiesPath],
+      migrations: [migrationPath],
     };
   }
 
