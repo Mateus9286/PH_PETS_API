@@ -4,5 +4,5 @@
 set -o errexit
 
 yarn
-yarn build
+yarn typeorm migration:generate src/migrations/initial-migrations -d src/data-source.ts
 yarn typeorm migration:run -d src/data-source
