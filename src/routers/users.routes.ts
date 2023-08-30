@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  createUserAdminController,
   createUserController,
   deleteUserController,
   listUsersController,
@@ -12,6 +13,8 @@ import { ensureUserExistsMiddleware } from "../middlewares/ensureUserExists.midd
 const userRoutes: Router = Router();
 
 userRoutes.post("/user", createUserController);
+
+userRoutes.post("/user", createUserAdminController);
 
 userRoutes.get(
   "/user",

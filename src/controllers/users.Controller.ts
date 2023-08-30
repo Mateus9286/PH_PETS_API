@@ -5,6 +5,7 @@ import {
   listUsersService,
 } from "../services/User";
 import { updateUserService } from "../services/User/pathUser.service";
+import { createUserAdminService } from "../services/User/createUser.servise";
 
 export const createUserController = async (req: Request, res: Response) => {
   const userData = req.body;
@@ -14,6 +15,17 @@ export const createUserController = async (req: Request, res: Response) => {
   return res
     .status(201)
     .json({ message: "User and related entities created successfully" });
+};
+
+export const createUserAdminController = async (
+  req: Request,
+  res: Response
+) => {
+  const userData = req.body;
+
+  const user = await createUserAdminService(userData);
+
+  return res.status(201).json(user);
 };
 
 export const listUsersController = async (req: Request, res: Response) => {

@@ -53,3 +53,20 @@ export const createUserService = async (data: IUser): Promise<void> => {
 
   await productListRepository.save(productEntities);
 };
+
+export const createUserAdminService = async (
+  data: any
+): Promise<void | User> => {
+  const { admin, name, password } = data;
+
+  const userRepository: Repository<User> = AppDataSource.getRepository(User);
+
+  const user: User = new User();
+  user.admin = admin!;
+  user.name = name;
+  user.password = password || process.env.SECRET_KEY!;
+
+  const savedUser: User = await userRepository.save(user);
+
+  return savedUser;
+};

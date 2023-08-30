@@ -15,8 +15,6 @@ const productsRoutes: Router = Router();
 
 productsRoutes.post(
   "/products",
-  ensureTokenIsValidMiddleware,
-  isAdminMiddleware,
   ensureDataIsValidMiddleware(productSchema),
   createProductController
 );
