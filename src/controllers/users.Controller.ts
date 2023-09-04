@@ -8,7 +8,7 @@ import { updateUserService } from "../services/User/pathUser.service";
 import { createUserAdminService } from "../services/User/createUser.servise";
 
 export const createUserController = async (req: Request, res: Response) => {
-  const userData = req.body;
+  const userData = await req.body;
 
   await createUserService(userData);
 
@@ -21,7 +21,7 @@ export const createUserAdminController = async (
   req: Request,
   res: Response
 ) => {
-  const userData = req.body;
+  const userData = await req.body;
 
   const user = await createUserAdminService(userData);
 

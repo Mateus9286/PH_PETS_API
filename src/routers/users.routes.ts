@@ -14,7 +14,7 @@ const userRoutes: Router = Router();
 
 userRoutes.post("/user", createUserController);
 
-userRoutes.post("/user", createUserAdminController);
+userRoutes.post("/user/admin", createUserAdminController);
 
 userRoutes.get(
   "/user",

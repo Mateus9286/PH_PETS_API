@@ -5,9 +5,10 @@ import { IUser } from "../../interfaces/users.interface";
 import { Repository } from "typeorm";
 
 export const createUserService = async (data: IUser): Promise<void> => {
-  const { admin, name, password, productsList } = data;
-  const { number, street, phone, neighborhood } = data.address!;
-  const { type, Troco } = data.payment;
+  console.log(data);
+  const { admin, name, password, productsList } = await data;
+  const { number, street, phone, neighborhood } = await data.address!;
+  const { type, Troco } = await data.payment;
 
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
   const addressRepository: Repository<Address> =

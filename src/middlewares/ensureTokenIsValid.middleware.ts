@@ -16,16 +16,20 @@ export const ensureTokenIsValidMiddleware = async (
 
   token = token.split(" ")[1];
 
-  jwt.verify(token, process.env.SECRET_KEY!, (error, decoded: any) => {
-    if (error) {
-      throw new AppError(error.message, 401);
+  jwt.verify(
+    token,
+    process.env.SECRET_KEY?.toString()!,
+    (error, decoded: any) => {
+      if (error) {
+        throw new AppError(error.message, 401);
+      }
+
+      res.locals.user = {
+        id: Number(decoded.sub),
+        admin: decoded.admin,
+      };
+
+      return next();
     }
-
-    res.locals.user = {
-      id: Number(decoded.sub),
-      admin: decoded.admin,
-    };
-
-    return next();
-  });
+  );
 };
