@@ -11,7 +11,7 @@ export const createProductService = async (data: any): Promise<void> => {
   const newProduct: Product = productRepository.create({
     category,
     name_product,
-    price,
+    price: Number(price),
     description,
     img,
   });
