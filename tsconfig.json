@@ -2,9 +2,11 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
+    "typeRoots": ["src/@types", "node_modules/@types"],
     "esModuleInterop": true,
-    "typeRoots": ["node_modules/@types"],
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "skipLibCheck": true,
